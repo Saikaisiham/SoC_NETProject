@@ -1,0 +1,44 @@
+
+
+{% block content %}
+  <h1>Per Page</h1>
+  <form method="post" action="{{ per_url }}" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.image.label_tag }}
+      {{ form.image }}
+      {% if form.image.errors %}
+        <div class="invalid-feedback">{{ form.image.errors|join:", " }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.date_of_birth.label_tag }}
+      {{ form.date_of_birth }}
+      {% if form.date_of_birth.errors %}
+        <div class="invalid-feedback">{{ form.date_of_birth.errors|join:", " }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.city.label_tag }}
+      {{ form.city }}
+      {% if form.city.errors %}
+        <div class="invalid-feedback">{{ form.city.errors|join:", " }}</div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.bio.label_tag }}
+      {{ form.bio }}
+      {% if form.bio.errors %}
+        <div class="invalid-feedback">{{ form.bio.errors|join:", " }}</div>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+
+  </form>
+{% endblock %}
