@@ -1,0 +1,31 @@
+
+
+{% block content %}
+  <h2>Create a Post</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+
+
+{% for comment in comments %}
+    <div class="comment">
+        <h4>{{ comment.author.username }} says:</h4>
+        <p>{{ comment.text }}</p>
+        <p class="date">{{ comment.created_date }}</p>
+    </div>
+{% empty %}
+    <p>No comments yet!</p>
+{% endfor %}
+
+{% if new_comment %}
+    <div class="alert alert-success" role>
+
+        {% endif %}
+
+    
+    </form>
+    
+{% endblock %}

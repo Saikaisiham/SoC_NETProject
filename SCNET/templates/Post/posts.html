@@ -1,0 +1,19 @@
+{% block content %}
+  {% for p in post %}
+    <div class="post">
+      <h3>Hello {{ p.author }}</h3>
+      <h3>{{ p.caption }}</h3>
+      <p>Published on {{ p.created }}</p>
+      <img src="{{ p.image.url }}" alt="Image for {{ p.caption }}" width="100px">
+      <p> likes</p>
+      <form action="{% url 'Post:like_post' pk=post.pk %}" method="post">
+        {% csrf_token %}
+        {% if request.user in p.likes.all %}
+          <button type="submit">Unlike</button>
+        {% else %}
+          <button type="submit">Like</button>
+        {% endif %}
+      </form>
+    </div>
+  {% endfor %}
+{% endblock %}
